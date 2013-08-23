@@ -98,9 +98,12 @@ class Caution_tape_acc {
 		// Label alignment
 		$align = (empty($this->config['align'])) ? 'right' : $this->config['align'];
 
+		// Label
+		$label = ($this->env_label) ? "<span>".$this->env_label."</span>" : "";
+
 		// Output js
 		$this->EE->theme_loader->output('
-			$("#branding").before("<div id=\'caution_tape\' class=\''.$align.'\'><span>'.$this->env_label.'</span></div>");
+			$("#branding").before("<div id=\'caution_tape\' class=\''.$align.'\'>'.$label.'</div>");
 		');
 	}
 	
@@ -121,18 +124,26 @@ class Caution_tape_acc {
 		// Not using FL's Bootstrap
 		else
 		{
-			$env_conf = $this->config['environments'];
+			$env_conf = isset($this->config['environments']) ? $this->config['environments'] : FALSE;
 
-			// Get lookup method, default to http_host (only support for http_host at the moment)
-			$method_val = (isset($env_conf['method'])) ? $env_conf['method'] : $_SERVER['HTTP_HOST'];
+			// Environments array specified?
+			if ($env_conf) {
+				// Get lookup method, default to http_host (only support for http_host at the moment)
+				$method_val = (isset($env_conf['method'])) ? $env_conf['method'] : $_SERVER['HTTP_HOST'];
 
-			// Get current environment's label.
-			// If it's not in the array, assume it's a dev environment
-			$env = (isset($env_conf[$method_val])) ? $env_conf[$method_val] : $env_conf['development'];
-			$env_label = $env['label'];
+				// Get current environment's label.
+				// If it's not in the array, assume it's a dev environment
+				$env = (isset($env_conf[$method_val])) ? $env_conf[$method_val] : $env_conf['development'];
+				$env_label = $env['label'];
 
-			// Show the tape for this environment?
-			$env_show = $env['show'];
+				// Show the tape for this environment?
+				$env_show = $env['show'];
+			}
+			// No environments specified?
+			else {
+				$env_label = FALSE;
+				$env_show = true;
+			}
 		}
 
 		// Set the environment vars
