@@ -118,7 +118,7 @@ class Caution_tape_acc {
 		// Using FL's Bootstrap
 		if ($using_bootstrap)
 		{
-			$env_label = ENV_FULL;
+			$env_label = (defined('ENV_TAPE_LABEL')) ? ENV_TAPE_LABEL : ENV_FULL;
 			$env_show = (defined('ENV_SHOW_TAPE')) ? ENV_SHOW_TAPE : TRUE;
 		}
 		// Not using FL's Bootstrap
@@ -141,7 +141,7 @@ class Caution_tape_acc {
 			}
 			// No environments specified?
 			else {
-				$env_label = FALSE;
+				$env_label = (config_item('caution_tape_label')) ? config_item('caution_tape_label') : FALSE;
 				$env_show = true;
 			}
 		}
