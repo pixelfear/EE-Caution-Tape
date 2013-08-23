@@ -1,0 +1,35 @@
+/* Tape bar */
+#caution_tape {
+	background: url(../img/tape.png);
+	height: 10px;
+}
+
+/* Alignment */
+#caution_tape.right {
+	padding-right: 23px;
+	text-align: right;
+}
+#caution_tape.left {
+	text-align: left;
+	padding-left: 30px;
+}
+#caution_tape.center { text-align: center; }
+
+/* Label */
+#caution_tape span {
+	display: inline-block;
+	vertical-align: top;
+	height: 10px;
+	line-height: 10px;
+	background: #e9ae36;
+	color: #6f4d09;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: helvetica, arial;
+	padding: 5px 7px 4px;
+	border: 1px solid #9e7624;
+	border-top: 0;
+	border-radius: 0 0 7px 7px;
+	box-shadow: 0 0 3px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+}
